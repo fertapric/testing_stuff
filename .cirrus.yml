@@ -1,0 +1,6 @@
+test_task:
+  container:
+    image: alpine
+
+  test_script:
+    - exit
