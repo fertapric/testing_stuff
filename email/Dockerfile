@@ -10,6 +10,7 @@ RUN update-ca-certificates
 
 RUN CGO_ENABLED=0 GOOS=linux \
     go get -v ./... && \
+    go test -v ./... && \
     go build -o build/email ./cmd/
 
 FROM alpine:latest
