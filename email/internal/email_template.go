@@ -1,12 +1,20 @@
 package internal
 
 const DefaultSubjectTemplate = `
-Elixir CI: Build failed for {{.Repo.FullName}} ({{.CheckSuite.HeadBranch}})
+Elixir CI: [{{.Repo.FullName}}] Build failed ({{.CheckSuite.HeadBranch}} - {{.CheckSuite.HeadSHA}})
 `
 
 const DefauleEmailMarkdownTemplate = `
 <p>
-Check run [{{ .CheckRun.Name }}]({{ .CheckRun.HTMLURL }}) {{ .CheckRun.Status }} in {{ .Duration }}
+  <b>{{ .CheckRun.Output.Title }}</b>
+
+  <p>{{ .CheckRun.Output.Summary }}</p>
+
+  <p>
+    <code>
+      {{ .CheckRun.Output.Text }}
+    </code>
+  </p>
 </p>
 
 <p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">
