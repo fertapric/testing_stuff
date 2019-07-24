@@ -1,6 +1,6 @@
 workflow "Cirrus" {
   on = "check_suite"
-  resolves = ["docker://cirrusactions/email:latest"]
+  resolves = ["Email"]
 }
 
 action "Email" {
