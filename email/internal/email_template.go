@@ -1,9 +1,9 @@
 package internal
 
 const DefaultSubjectTemplate = `
-Build failed for {{.Repo.FullName}}#{{.CheckSuite.HeadBranch}}
+{{.CheckSuite.App.Name}} check for {{.Repo.FullName}}#{{.CheckSuite.HeadBranch}} {{.CheckSuite.Status}}
 `
 
 const DefauleEmailMarkdownTemplate = `
-Build results available in {{ .CheckRun.HTMLURL }}. It took {{ .Duration }}
+Check run [{{ .CheckRun.Name }}]({{ .CheckRun.HTMLURL }}) {{ .CheckRun.Status }} in {{ .Duration }}
 `
