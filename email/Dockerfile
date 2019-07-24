@@ -3,6 +3,7 @@ FROM golang:alpine as builder
 WORKDIR /build/action
 ADD . /build/action
 
+# https://github.com/google/go-github/issues/1049
 RUN apk update && apk upgrade && apk add --no-cache gcc musl-dev git ca-certificates
 
 RUN update-ca-certificates
