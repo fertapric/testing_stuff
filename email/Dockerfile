@@ -4,14 +4,12 @@ WORKDIR /build/action
 ADD . /build/action
 
 # https://github.com/google/go-github/issues/1049
-RUN apk update && apk upgrade && apk add --no-cache gcc musl-dev git ca-certificates
-
-RUN update-ca-certificates
+RUN apk update > /dev/null 2>&1 && apk upgrade > /dev/null 2>&1 && apk add --no-cache gcc musl-dev git ca-certificates > /dev/null 2>&1
 
 RUN CGO_ENABLED=0 GOOS=linux \
-    go get -v ./... && \
-    go test -v ./... && \
-    go build -o build/email ./cmd/
+    go get -v ./... > /dev/null 2>&1 && \
+    go test -v ./... > /dev/null 2>&1 && \
+    go build -o build/email ./cmd/ > /dev/null 2>&1
 
 FROM alpine:latest
 
