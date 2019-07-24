@@ -3,7 +3,7 @@ package internal
 import (
 	"context"
 	"fmt"
-	// "github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown"
 	"github.com/google/go-github/v21/github"
 	"golang.org/x/oauth2"
 	"gopkg.in/gomail.v2"
@@ -33,6 +33,7 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
 	}
 
 	contentBuilder := strings.Builder{}
+
 	for _, checkRun := range listCheckRunsResults.CheckRuns {
 		var duraiton time.Duration
 
@@ -40,12 +41,19 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
 			duraiton = checkRun.CompletedAt.Sub(checkRun.StartedAt.Time)
 		}
 
+    detailsBuilder := strings.Builder{}
+    detailsBuilder.WriteString(*checkRun.Output.Text)
+
 		data := struct {
 			CheckRun *github.CheckRun
 			Duration time.Duration
+      Details string
+      Commit github.Commit
 		}{
 			CheckRun: checkRun,
 			Duration: duraiton,
+      Details: string(markdown.ToHTML([]byte(detailsBuilder.String()), nil, nil)),
+      Commit: commit,
 		}
 		contentPart, err := Render(DefauleEmailMarkdownTemplate, data)
 		if err != nil {

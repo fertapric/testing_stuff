@@ -6,14 +6,18 @@ Elixir CI: [{{.Repo.FullName}}] Build failed ({{.CheckSuite.HeadBranch}} - {{.Ch
 
 const DefauleEmailMarkdownTemplate = `
 <p>
+  <h1>{{.Repo.FullName}} ({{.CheckSuite.HeadBranch}} - {{.CheckSuite.HeadSHA}} by <a href="https://github.com/{{.Commit.Author.Login}}">@{{.Commit.Author.Login}}</a>)</h1>
+  <h2> Foo</h2>
+  <h3> Foo</h3>
+
+  <b>{{ .CheckRun.Output.Title }}</b>
+  <p style="color: #cb2431"><b>{{ .CheckRun.Conclusion }}</b> ran in {{.Duration}}</p>
   <b>{{ .CheckRun.Output.Title }}</b>
 
   <p>{{ .CheckRun.Output.Summary }}</p>
 
   <p>
-    <code>
-      {{ .CheckRun.Output.Text }}
-    </code>
+    {{ .Details }}
   </p>
 </p>
 
