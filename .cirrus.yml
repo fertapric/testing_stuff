@@ -3,4 +3,4 @@ test_task:
     image: alpine
 
   test_script:
-    - exit
+    - exit 1
