@@ -4,7 +4,7 @@ workflow "Cirrus" {
 }
 
 action "Email" {
-  uses = "./email"
+  uses = "./email/"
   secrets = ["GITHUB_TOKEN", "MAIL_FROM", "MAIL_HOST", "MAIL_USERNAME", "MAIL_PASSWORD"]
   env = {
     APP_NAME = "Cirrus CI"
