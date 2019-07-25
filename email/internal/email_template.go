@@ -8,13 +8,13 @@ const DefauleEmailMarkdownTemplate = `
 <p>
   <h2>{{.Event.Repo.FullName}} ({{.CheckSuite.HeadBranch}})</h2>
 
-  <p><a href="{{.Commit.HTMLURL}}">{{.Commit.SHA}}</a> - {{.Commit.Message}}</p>
+  <p><a href="{{.CheckSuite.HeadCommit.HTMLURL}}">{{.CheckSuite.HeadCommit.SHA}}</a> - {{.CheckSuite.HeadCommit.Message}}</p>
 
   <p>The following checks failed:</p>
 
   <h3>{{ .CheckRun.Name }}</h3>
 
-  <p><b style="color: #cb2431">{{ .CheckRun.Conclusion }}</b> ran at <b>{{.CheckRun.StartedAt}}</b> in <b>{{.Duration}}</b></p>
+  <p><b style="color: #cb2431">{{ .CheckRun.Conclusion }}</b> - ran at <b>{{.CheckRun.StartedAt}}</b> in <b>{{.Duration}}</b></p>
 
   <p><b>{{ .CheckRun.Output.Title }}</b></p>
   <p>{{ .CheckRun.Output.Summary }}</p>
