@@ -8,7 +8,7 @@ const DefauleEmailMarkdownTemplate = `
 <p>
   <h2>{{.Event.Repo.FullName}} ({{.CheckSuite.HeadBranch}})</h2>
 
-  <p><a href="{{.CheckSuite.HeadCommit.HTMLURL}}">{{.CheckSuite.HeadCommit.SHA}}</a> - {{.CheckSuite.HeadCommit.Message}}</p>
+  <p><a href="{{.Commit.HTMLURL}}">{{.Commit.SHA}}</a> - {{.Commit.Message}}</p>
 
   <p>The following checks failed:</p>
 
