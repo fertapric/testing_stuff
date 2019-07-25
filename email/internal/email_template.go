@@ -26,6 +26,6 @@ const DefauleEmailMarkdownTemplate = `
   <br />
   You are receiving this because you are the author of the commit.
   <br />
-  <a href="{{ .CheckSuite.HTMLURL }}">View it on GitHub</a>
+  <a href="{{ .CheckRun.HTMLURL }}">View it on GitHub</a>
 </p>
 `
