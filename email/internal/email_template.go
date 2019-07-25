@@ -8,7 +8,7 @@ const DefauleEmailMarkdownTemplate = `
 <p>
   <h2>{{.Event.Repo.FullName}} ({{.CheckSuite.HeadBranch}})</h2>
 
-  <p><a href="{{.Commit.HTMLURL}}">{{.Commit.SHA}})</a> - {{.Commit.Message}}</p>
+  <p><a href="{{.Commit.HTMLURL}}">{{.Commit.SHA}}</a> - {{.Commit.Message}}</p>
 
   <p>The following checks failed:</p>
 
@@ -26,6 +26,6 @@ const DefauleEmailMarkdownTemplate = `
   <br />
   You are receiving this because you are the author of the commit.
   <br />
-  <a href="{{ .CheckRun.HTMLURL }}">View it on GitHub</a>
+  <a href="{{ .CheckSuite.HTMLURL }}">View it on GitHub</a>
 </p>
 `
