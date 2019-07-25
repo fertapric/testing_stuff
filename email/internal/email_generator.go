@@ -46,11 +46,13 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
 
 		data := struct {
 			CheckRun *github.CheckRun
+      CheckSuite *github.CheckSuite
 			Duration time.Duration
       // Details string
       // Commit github.Commit
 		}{
 			CheckRun: checkRun,
+      CheckSuite: event.CheckSuite,
 			Duration: duraiton,
       // Details: "foo", //string(markdown.ToHTML([]byte(detailsBuilder.String()), nil, nil)),
       // Commit: commit,
