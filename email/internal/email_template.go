@@ -6,7 +6,7 @@ Elixir CI: [{{.Repo.FullName}}] Build failed ({{.CheckSuite.HeadBranch}} - {{.Ch
 
 const DefauleEmailMarkdownTemplate = `
 <p>
-  <h2>{{.CheckSuite.Repository.FullName}} ({{.CheckSuite.HeadBranch}})</h2>
+  <h2>{{.Event.Repo.FullName}} ({{.CheckSuite.HeadBranch}})</h2>
 
   <p><a href="{{.Commit.HTMLURL}}">{{.Commit.SHA}})</a> - {{.Commit.Message}}</p>
 
