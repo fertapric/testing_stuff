@@ -4,3 +4,10 @@ test_task:
 
   test_script:
     - exit 1
+
+hello_task:
+  container:
+    image: alpine
+
+  test_script:
+    - exit 1
