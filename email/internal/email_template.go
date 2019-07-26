@@ -342,7 +342,9 @@ const EmailCheckTemplate = `
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 5px; padding-left: 5px; padding-top: 5px; padding-bottom: 5px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                       <div style="color:#cb2431;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:5px;padding-right:5px;padding-bottom:5px;padding-left:5px;">
                         <div style="font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; line-height: 14px; font-size: 12px; color: #cb2431;">
-                          <p style="line-height: 14px; font-size: 12px; margin: 0;"><strong><span style="font-size: 18px; line-height: 21px; color: #cb2431;">test</span></strong></p>
+                          <p style="line-height: 14px; font-size: 12px; margin: 0;"><strong><span style="font-size: 18px; line-height: 21px; color: #cb2431;">
+                          {{ .CheckRun.Name }}
+                          </span></strong></p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->

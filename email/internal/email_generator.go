@@ -54,34 +54,37 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
 	for _, checkRun := range listCheckRunsResults.CheckRuns {
 		var duraiton time.Duration
 
-		if checkRun.CompletedAt != nil {
-			duraiton = checkRun.CompletedAt.Sub(checkRun.StartedAt.Time)
-		}
+    if *checkRun.Conclusion == "failure" {
 
-    // detailsBuilder := strings.Builder{}
-    // detailsBuilder.WriteString(*checkRun.Output.Text)
+  		if checkRun.CompletedAt != nil {
+  			duraiton = checkRun.CompletedAt.Sub(checkRun.StartedAt.Time)
+  		}
 
-		data := struct {
-			CheckRun *github.CheckRun
-      CheckSuite *github.CheckSuite
-			Duration time.Duration
-      // Details string
-      Commit github.Commit
-      Event github.CheckSuiteEvent
-		}{
-			CheckRun: checkRun,
-      CheckSuite: event.CheckSuite,
-			Duration: duraiton,
-      Commit: commit,
-      Event: event,
-      // Details: "foo", //string(markdown.ToHTML([]byte(detailsBuilder.String()), nil, nil)),
-		}
-		contentPart, err := Render(EmailCheckTemplate, data)
-		if err != nil {
-			return nil, fmt.Errorf("could not render content template for check run '%s': %v", *checkRun.Name, err)
-		}
-		contentBuilder.WriteString(contentPart)
-		contentBuilder.WriteString("\n")
+      // detailsBuilder := strings.Builder{}
+      // detailsBuilder.WriteString(*checkRun.Output.Text)
+
+  		data := struct {
+  			CheckRun *github.CheckRun
+        CheckSuite *github.CheckSuite
+  			Duration time.Duration
+        // Details string
+        Commit github.Commit
+        Event github.CheckSuiteEvent
+  		}{
+  			CheckRun: checkRun,
+        CheckSuite: event.CheckSuite,
+  			Duration: duraiton,
+        Commit: commit,
+        Event: event,
+        // Details: "foo", //string(markdown.ToHTML([]byte(detailsBuilder.String()), nil, nil)),
+  		}
+  		contentPart, err := Render(EmailCheckTemplate, data)
+  		if err != nil {
+  			return nil, fmt.Errorf("could not render content template for check run '%s': %v", *checkRun.Name, err)
+  		}
+  		contentBuilder.WriteString(contentPart)
+  		contentBuilder.WriteString("\n")
+    }
 	}
 
   dataFooter := struct {
