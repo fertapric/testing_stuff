@@ -196,7 +196,7 @@ const DefaultEmailMarkdownTemplate = `
 <p style="line-height: 16px; font-size: 12px; margin: 0;"><span style="font-size: 14px;"><span style="line-height: 16px; font-size: 14px;">:white_check_mark: 00:00&nbsp;</span><span style="line-height: 16px; font-size: 14px;">clone </span></span></p>
 <p style="line-height: 16px; font-size: 12px; margin: 0;"><span style="font-size: 14px;">:x: 00:01 test </span></p>
 <p style="line-height: 14px; font-size: 12px; margin: 0;">&nbsp;</p>
-<p style="line-height: 16px; font-size: 12px; margin: 0;"><span style="font-size: 14px;">```console exit 1 ```</span></p>
+<p style="line-height: 16px; font-size: 12px; margin: 0;"><span style="font-size: 14px;">console exit 1 </span></p>
 </div></div><!--[if mso]></td></tr></table><![endif]-->
 
 <!--[if (!mso)&(!IE)]><!-->
