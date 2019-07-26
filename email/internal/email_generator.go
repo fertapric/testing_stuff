@@ -51,12 +51,14 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
       // Details string
       Commit github.Commit
       Event github.CheckSuiteEvent
+      WhyReceiving string
 		}{
 			CheckRun: checkRun,
       CheckSuite: event.CheckSuite,
 			Duration: duraiton,
       Commit: commit,
       Event: event,
+      WhyReceiving: "the author of this commit",
       // Details: "foo", //string(markdown.ToHTML([]byte(detailsBuilder.String()), nil, nil)),
 		}
 		contentPart, err := Render(DefaultEmailMarkdownTemplate, data)
