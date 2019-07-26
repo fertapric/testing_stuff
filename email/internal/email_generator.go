@@ -59,7 +59,7 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
       Event: event,
       // Details: "foo", //string(markdown.ToHTML([]byte(detailsBuilder.String()), nil, nil)),
 		}
-		contentPart, err := Render(DefauleEmailMarkdownTemplate, data)
+		contentPart, err := Render(DefaultEmailMarkdownTemplate, data)
 		if err != nil {
 			return nil, fmt.Errorf("could not render content template for check run '%s': %v", *checkRun.Name, err)
 		}
