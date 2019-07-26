@@ -1,7 +1,7 @@
 package internal
 
 const DefaultSubjectTemplate = `
-[Elixir CI] Build failed: [{{.Repo.FullName}}] on {{.CheckSuite.HeadBranch}} - ({{.CheckSuite.HeadSHA}})
+[Elixir CI] Build failed: {{.Repo.FullName}} on {{.CheckSuite.HeadBranch}}
 `
 
 const DefauleEmailMarkdownTemplate = `
@@ -30,7 +30,7 @@ const DefauleEmailMarkdownTemplate = `
 </p>
 `
 
-const DefaultEmailMarkdownTemplate = `
+const EmailHeaderTemplate = `
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
 <head>
@@ -300,6 +300,8 @@ const DefaultEmailMarkdownTemplate = `
               </div>
             </div>
           </div>
+`
+const EmailCheckTemplate = `
           <div style="background-color:transparent;">
             <div class="block-grid " style="Margin: 0 auto; min-width: 320px; max-width: 580px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #fff;">
               <div style="border-collapse: collapse;display: table;width: 100%;background-color:#fff;">
@@ -442,6 +444,9 @@ const DefaultEmailMarkdownTemplate = `
               </div>
             </div>
           </div>
+`
+
+const EmailFooterTemplate = `
           <div style="background-color:transparent;">
             <div class="block-grid " style="Margin: 0 auto; min-width: 320px; max-width: 580px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #fff;">
               <div style="border-collapse: collapse;display: table;width: 100%;background-color:#fff;">

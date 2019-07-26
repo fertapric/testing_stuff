@@ -34,6 +34,23 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
 
 	contentBuilder := strings.Builder{}
 
+  dataHeader := struct {
+      CheckSuite *github.CheckSuite
+      Commit github.Commit
+      Event github.CheckSuiteEvent
+    }{
+      CheckSuite: event.CheckSuite,
+      Commit: commit,
+      Event: event,
+    }
+  headerPart, err := Render(EmailHeaderTemplate, dataHeader)
+  if err != nil {
+    return nil, fmt.Errorf("could not render header template: %v", err)
+  }
+
+  contentBuilder.WriteString(headerPart)
+  contentBuilder.WriteString("\n")
+
 	for _, checkRun := range listCheckRunsResults.CheckRuns {
 		var duraiton time.Duration
 
@@ -51,23 +68,34 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
       // Details string
       Commit github.Commit
       Event github.CheckSuiteEvent
-      WhyReceiving string
 		}{
 			CheckRun: checkRun,
       CheckSuite: event.CheckSuite,
 			Duration: duraiton,
       Commit: commit,
       Event: event,
-      WhyReceiving: "the author of this commit",
       // Details: "foo", //string(markdown.ToHTML([]byte(detailsBuilder.String()), nil, nil)),
 		}
-		contentPart, err := Render(DefaultEmailMarkdownTemplate, data)
+		contentPart, err := Render(EmailCheckTemplate, data)
 		if err != nil {
 			return nil, fmt.Errorf("could not render content template for check run '%s': %v", *checkRun.Name, err)
 		}
 		contentBuilder.WriteString(contentPart)
 		contentBuilder.WriteString("\n")
 	}
+
+  dataFooter := struct {
+    WhyReceiving string
+  }{
+    WhyReceiving: "the author of this commit",
+  }
+  footerPart, err := Render(EmailFooterTemplate, dataFooter)
+  if err != nil {
+    return nil, fmt.Errorf("could not render footer template: %v", err)
+  }
+
+  contentBuilder.WriteString(footerPart)
+  contentBuilder.WriteString("\n")
 
 	contentMD := contentBuilder.String()
 	message.AddAlternative("text/text", contentMD)
