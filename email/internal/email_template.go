@@ -263,7 +263,7 @@ const EmailHeaderTemplate = `
                           <p style="font-size: 14px; line-height: 16px; margin: 0;"><span style="font-size: 14px; line-height: 16px; color: #ffffff;">
                           <a href="https://github.com/{{.Event.Repo.FullName}}/tree/{{.CheckSuite.HeadBranch}}" style="color: #9768d1; line-height: 16px; font-size: 14px;">
                             <strong>{{.CheckSuite.HeadBranch}}</strong>
-                          </span>
+                          </a>
                               <span style="color: #808080; line-height: 16px; font-size: 14px;">
                               <span style="line-height: 16px; font-size: 14px;">branch</span>
                               </span></span></p>
@@ -281,14 +281,14 @@ const EmailHeaderTemplate = `
                               {{.CheckSuite.HeadSHA}}
                               </span>
                             </strong>
-                          </span>
+                          </a>
                               <span style="color: #808080; line-height: 16px; font-size: 14px;">
                               by
                               </span>
                               <span style="line-height: 16px; font-size: 14px;">
                                 <strong>
-                                  <a href="https://github.com/{{.Commit.Author.Name}}" style="color: #808080; line-height: 16px; font-size: 14px;">
-                                    @{{.Commit.Author.Name}}
+                                  <a href="https://github.com/{{.Event.Sender.Login}}" style="color: #808080; line-height: 16px; font-size: 14px;">
+                                    @{{.Event.Sender.Login}}
                                   </a>
                                 </strong>
                               </span>
@@ -353,7 +353,7 @@ const EmailCheckTemplate = `
                         <div style="font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; line-height: 14px; font-size: 12px; color: #cb2431;">
                           <p style="line-height: 14px; font-size: 12px; margin: 0;">
                             <strong>
-                            <a href="{{.CheckRun.HTMLURL}} style="font-size: 18px; line-height: 21px; color: #cb2431;">
+                            <a href="{{.CheckRun.HTMLURL}}" style="font-size: 18px; line-height: 21px; color: #cb2431;">
                               {{ .CheckRun.Name }}
                             </a>
                             </strong></p>
@@ -408,7 +408,7 @@ const EmailCheckTemplate = `
                           <span style="font-size: 12px;">
                           <span style="color: #000000; line-height: 14px; font-size: 12px;">
                           <strong>
-                          <a href="{{.CheckRun.HTMLURL}} style="color: #cb2431; line-height: 14px; font-size: 12px;">
+                          <a href="{{.CheckRun.HTMLURL}}" style="color: #cb2431; line-height: 14px; font-size: 12px;">
                             <span style="line-height: 14px; font-size: 12px;">
                               View on GitHub
                             </span>
