@@ -55,7 +55,7 @@ func SendNotification(spec Specification) {
 	matched, err := regexp.MatchString(`\Av\d+\.\d`, *event.CheckSuite.HeadBranch)
 
 	if *event.CheckSuite.HeadBranch == "master" || matched {
-		message, err := generateEmail(spec, event, commit, "fernando.tapia@jobandtalent.com", "Elixir CI", "are subscribed to the ci@elixir-lang.org mailing list")
+		message, err := generateEmail(spec, event, commit, spec.ElixirCIMail, "Elixir CI", "subscribed to the Elixir CI mailing list")
 		if err != nil {
 			log.Fatalf("Failed to generate email! %s", err)
 		}
