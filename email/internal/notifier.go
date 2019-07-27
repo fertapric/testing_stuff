@@ -3,6 +3,7 @@ package internal
 import (
 	"gopkg.in/gomail.v2"
 	"log"
+  "regexp"
 )
 
 type Specification struct {
@@ -15,6 +16,7 @@ type Specification struct {
 	MailFrom            string   `envconfig:"MAIL_FROM" required:"true"`
 	MailUsername        string   `envconfig:"MAIL_USERNAME" required:"true"`
 	MailPassword        string   `envconfig:"MAIL_PASSWORD" required:"true"`
+	// ElixirCIMail        string   `envconfig:"ELIXIR_CI_MAIL" required:"true"`
 }
 
 func SendNotification(spec Specification) {
@@ -41,12 +43,25 @@ func SendNotification(spec Specification) {
 	} else {
 		dialer = gomail.NewDialer(spec.MailHost, spec.MailPort, spec.MailUsername, spec.MailPassword)
 	}
-	message, err := generateEmail(spec, event, commit)
+	message, err := generateEmail(spec, event, commit, *commit.Author.Email, *commit.Author.Name, "the author of this commit")
 	if err != nil {
 		log.Fatalf("Failed to generate email! %s", err)
 	}
 	err = dialer.DialAndSend(message)
 	if err != nil {
 		log.Fatalf("Failed to send email! %s", err)
+	}
+
+	matched, err := regexp.MatchString(`\Av\d+\.\d`, *event.CheckSuite.HeadBranch)
+
+	if *event.CheckSuite.HeadBranch == "master" || matched {
+		message, err := generateEmail(spec, event, commit, "fernando.tapia@jobandtalent.com", "Elixir CI", "are subscribed to the ci@elixir-lang.org mailing list")
+		if err != nil {
+			log.Fatalf("Failed to generate email! %s", err)
+		}
+		err = dialer.DialAndSend(message)
+		if err != nil {
+			log.Fatalf("Failed to send email! %s", err)
+		}
 	}
 }
