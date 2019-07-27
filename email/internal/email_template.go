@@ -278,7 +278,7 @@ const EmailHeaderTemplate = `
                           <a href="https://github.com/{{.Event.Repo.FullName}}/commit/{{.CheckSuite.HeadSHA}}" style="color: #9768d1; line-height: 16px; font-size: 14px;text-decoration: none;">
                             <strong>
                               <span style="line-height: 16px; font-size: 14px;">
-                              {{.CheckSuite.HeadSHA}}
+                              {{printf \"%.6s\" .CheckSuite.HeadSHA}}
                               </span>
                             </strong>
                           </a>
@@ -415,35 +415,6 @@ const EmailCheckTemplate = `
                           </a>
                           </strong>
                             </span></span></p>
-                        </div>
-                      </div>
-                      <!--[if mso]></td></tr></table><![endif]-->
-                      <table class="divider" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
-                        role="presentation" valign="top">
-                        <tbody>
-                          <tr style="vertical-align: top;" valign="top">
-                            <td class="divider_inner" style="word-break: break-word; vertical-align: top; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"
-                              valign="top">
-                              <table class="divider_content" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-top: 1px solid #cb2431; height: 0px;"
-                                align="center" role="presentation" height="0" valign="top">
-                                <tbody>
-                                  <tr style="vertical-align: top;" valign="top">
-                                    <td style="word-break: break-word; vertical-align: top; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;" height="0" valign="top"><span></span></td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 5px; padding-left: 5px; padding-top: 10px; padding-bottom: 5px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
-                      <div style="color:#132F40;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:10px;padding-right:5px;padding-bottom:5px;padding-left:5px;">
-                        <div style="line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; color: #132F40;">
-                          <p style="line-height: 16px; font-size: 12px; margin: 0;"><span style="font-size: 14px;"><span style="line-height: 16px; font-size: 14px;">:white_check_mark: 00:00&nbsp;</span><span style="line-height: 16px; font-size: 14px;">clone
-                              </span></span></p>
-                          <p style="line-height: 16px; font-size: 12px; margin: 0;"><span style="font-size: 14px;">:x: 00:01 test </span></p>
-                          <p style="line-height: 14px; font-size: 12px; margin: 0;">&nbsp;</p>
-                          <p style="line-height: 16px; font-size: 12px; margin: 0;"><span style="font-size: 14px;">console exit 1 </span></p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
