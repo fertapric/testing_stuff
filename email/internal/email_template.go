@@ -260,8 +260,9 @@ const EmailHeaderTemplate = `
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 0px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                       <div style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:0px;padding-left:10px;">
                         <div style="font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; line-height: 14px; color: #555555;">
-                          <p style="font-size: 14px; line-height: 16px; margin: 0;"><span style="font-size: 14px; line-height: 16px; color: #ffffff;"><span style="color: #9768d1; line-height: 16px; font-size: 14px;">
-                          <strong>{{.CheckSuite.HeadBranch}}</strong>
+                          <p style="font-size: 14px; line-height: 16px; margin: 0;"><span style="font-size: 14px; line-height: 16px; color: #ffffff;">
+                          <a href="https://github.com/{{.Event.Repo.FullName}}/tree/{{.CheckSuite.HeadBranch}}" style="color: #9768d1; line-height: 16px; font-size: 14px;">
+                            <strong>{{.CheckSuite.HeadBranch}}</strong>
                           </span>
                               <span style="color: #808080; line-height: 16px; font-size: 14px;">
                               <span style="line-height: 16px; font-size: 14px;">branch</span>
@@ -272,15 +273,23 @@ const EmailHeaderTemplate = `
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 5px; padding-bottom: 10px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                       <div style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:5px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                         <div style="font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; line-height: 14px; color: #555555;">
-                          <p style="font-size: 14px; line-height: 16px; margin: 0;"><span style="font-size: 14px; line-height: 16px; color: #000000;"><span style="color: #9768d1; line-height: 16px; font-size: 14px;"><strong><span style="line-height: 16px; font-size: 14px;">eeec7ae</span></strong></span>
+                          <p style="font-size: 14px; line-height: 16px; margin: 0;"><span style="font-size: 14px; line-height: 16px; color: #000000;">
+
+                          <a href="https://github.com/{{.Event.Repo.FullName}}/commit/{{.CheckSuite.HeadSHA}}" style="color: #9768d1; line-height: 16px; font-size: 14px;">
+                            <strong>
+                              <span style="line-height: 16px; font-size: 14px;">
+                              {{.SHA}}
+                              </span>
+                            </strong>
+                          </span>
                               <span style="color: #808080; line-height: 16px; font-size: 14px;">
                               by
                               </span>
                               <span style="line-height: 16px; font-size: 14px;">
                                 <strong>
-                                  <span style="line-height: 16px; font-size: 14px;">
-                                    @fertapric
-                                  </span>
+                                  <a href="https://github.com/{{.Commit.Author.Name}}" style="color: #808080; line-height: 16px; font-size: 14px;">
+                                    @{{.Commit.Author.Name}}
+                                  </a>
                                 </strong>
                               </span>
                               <span style="color: #808080; line-height: 16px; font-size: 14px;">
@@ -342,9 +351,12 @@ const EmailCheckTemplate = `
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 5px; padding-left: 5px; padding-top: 5px; padding-bottom: 5px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                       <div style="color:#cb2431;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:5px;padding-right:5px;padding-bottom:5px;padding-left:5px;">
                         <div style="font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; line-height: 14px; font-size: 12px; color: #cb2431;">
-                          <p style="line-height: 14px; font-size: 12px; margin: 0;"><strong><span style="font-size: 18px; line-height: 21px; color: #cb2431;">
-                          {{ .CheckRun.Name }}
-                          </span></strong></p>
+                          <p style="line-height: 14px; font-size: 12px; margin: 0;">
+                            <strong>
+                            <a href="{{.CheckRun.HTMLURL}} style="font-size: 18px; line-height: 21px; color: #cb2431;">
+                              {{ .CheckRun.Name }}
+                            </a>
+                            </strong></p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
@@ -371,23 +383,38 @@ const EmailCheckTemplate = `
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 5px; padding-left: 5px; padding-top: 5px; padding-bottom: 5px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                       <div style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:5px;padding-right:5px;padding-bottom:5px;padding-left:5px;">
                         <div style="font-size: 12px; line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #555555;">
-                          <p style="font-size: 14px; line-height: 14px; margin: 0;"><span style="font-size: 12px;"><span style="color: #808080; line-height: 14px; font-size: 12px;">ran at</span> <span style="color: #000000; line-height: 14px; font-size: 12px;"><strong>2019-07-25
-                                  12:40:15 +0000 UTC</strong></span> <span style="color: #808080; line-height: 14px; font-size: 12px;">in</span> <span style="color: #000000; line-height: 14px; font-size: 12px;"><strong>2s</strong></span></span></p>
+                          <p style="font-size: 14px; line-height: 14px; margin: 0;"><span style="font-size: 12px;"><span style="color: #808080; line-height: 14px; font-size: 12px;">ran at</span> <span style="color: #000000; line-height: 14px; font-size: 12px;"><strong>
+                          {{.CheckRun.StartedAt}}
+                          </strong></span> <span style="color: #808080; line-height: 14px; font-size: 12px;">in</span> <span style="color: #000000; line-height: 14px; font-size: 12px;"><strong>
+                          {{.Duration}}
+                          </strong></span></span></p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 5px; padding-left: 5px; padding-top: 10px; padding-bottom: 5px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                       <div style="color:#132F40;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:10px;padding-right:5px;padding-bottom:5px;padding-left:5px;">
                         <div style="line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; color: #132F40;">
-                          <p style="line-height: 19px; font-size: 12px; margin: 0;"><span style="font-size: 16px; color: #000000;">Instruction test failed in 00:01</span></p>
+                          <p style="line-height: 19px; font-size: 12px; margin: 0;">
+                          <span style="font-size: 16px; color: #000000;">
+                          {{ .CheckRun.Output.Summary }}
+                          </span></p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 5px; padding-left: 5px; padding-top: 15px; padding-bottom: 5px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                       <div style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:15px;padding-right:5px;padding-bottom:5px;padding-left:5px;">
                         <div style="font-size: 12px; line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #555555;">
-                          <p style="font-size: 14px; line-height: 14px; margin: 0;"><span style="font-size: 12px;"><span style="color: #000000; line-height: 14px; font-size: 12px;"><strong><span style="color: #cb2431; line-height: 14px; font-size: 12px;"><span
-                                      style="line-height: 14px; font-size: 12px;">View on GitHu</span>b</span></strong></span></span></p>
+                          <p style="font-size: 14px; line-height: 14px; margin: 0;">
+                          <span style="font-size: 12px;">
+                          <span style="color: #000000; line-height: 14px; font-size: 12px;">
+                          <strong>
+                          <a href="{{.CheckRun.HTMLURL}} style="color: #cb2431; line-height: 14px; font-size: 12px;">
+                            <span style="line-height: 14px; font-size: 12px;">
+                              View on GitHub
+                            </span>
+                          </a>
+                          </strong>
+                            </span></span></p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->

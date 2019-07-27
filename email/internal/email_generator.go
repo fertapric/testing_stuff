@@ -33,15 +33,18 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
 	}
 
 	contentBuilder := strings.Builder{}
+  sha := *commit.SHA
 
   dataHeader := struct {
       CheckSuite *github.CheckSuite
       Commit github.Commit
       Event github.CheckSuiteEvent
+      SHA string
     }{
       CheckSuite: event.CheckSuite,
       Commit: commit,
       Event: event,
+      SHA: sha[:6],
     }
   headerPart, err := Render(EmailHeaderTemplate, dataHeader)
   if err != nil {
