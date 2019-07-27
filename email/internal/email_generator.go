@@ -43,6 +43,7 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
       CheckSuite: event.CheckSuite,
       Commit: commit,
       Event: event,
+      SHA: fmt.Sprintf("%.6s", *event.CheckSuite.HeadSHA),
     }
   headerPart, err := Render(EmailHeaderTemplate, dataHeader)
   if err != nil {

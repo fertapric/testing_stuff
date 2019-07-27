@@ -278,7 +278,7 @@ const EmailHeaderTemplate = `
                           <a href="https://github.com/{{.Event.Repo.FullName}}/commit/{{.CheckSuite.HeadSHA}}" style="color: #9768d1; line-height: 16px; font-size: 14px;text-decoration: none;">
                             <strong>
                               <span style="line-height: 16px; font-size: 14px;">
-                              {{printf \"%.6s\" .CheckSuite.HeadSHA}}
+                              {{.SHA}}
                               </span>
                             </strong>
                           </a>
