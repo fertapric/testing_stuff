@@ -12,11 +12,11 @@ import (
 	"time"
 )
 
-func generateEmail(spec Specification, event github.CheckSuiteEvent, commit github.Commit) (*gomail.Message, error) {
+func generateEmail(spec Specification, event github.CheckSuiteEvent, commit github.Commit, email string, name string, whyReceiving string) (*gomail.Message, error) {
 	message := gomail.NewMessage()
 
 	message.SetAddressHeader("From", spec.MailFrom, "Elixir CI")
-	message.SetAddressHeader("To", *commit.Committer.Email, *commit.Committer.Name)
+	message.SetAddressHeader("To", email, name)
 	log.Printf("Creating email for %v <%v>...\n", *commit.Committer.Name, *commit.Committer.Email)
 
 	// populate subject:
@@ -92,7 +92,7 @@ func generateEmail(spec Specification, event github.CheckSuiteEvent, commit gith
   dataFooter := struct {
     WhyReceiving string
   }{
-    WhyReceiving: "the author of this commit",
+    WhyReceiving: whyReceiving,
   }
   footerPart, err := Render(EmailFooterTemplate, dataFooter)
   if err != nil {

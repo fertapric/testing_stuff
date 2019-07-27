@@ -41,7 +41,7 @@ func SendNotification(spec Specification) {
 	} else {
 		dialer = gomail.NewDialer(spec.MailHost, spec.MailPort, spec.MailUsername, spec.MailPassword)
 	}
-	message, err := generateEmail(spec, event, commit)
+	message, err := generateEmail(spec, event, commit, *commit.Author.Email, *commit.Author.Name, "the author of this commit")
 	if err != nil {
 		log.Fatalf("Failed to generate email! %s", err)
 	}
