@@ -16,7 +16,7 @@ type Specification struct {
 	MailFrom            string   `envconfig:"MAIL_FROM" required:"true"`
 	MailUsername        string   `envconfig:"MAIL_USERNAME" required:"true"`
 	MailPassword        string   `envconfig:"MAIL_PASSWORD" required:"true"`
-	// ElixirCIMail        string   `envconfig:"ELIXIR_CI_MAIL" required:"true"`
+	ElixirCIMail        string   `envconfig:"ELIXIR_CI_MAIL" required:"true"`
 }
 
 func SendNotification(spec Specification) {
