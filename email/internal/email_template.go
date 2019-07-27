@@ -261,7 +261,7 @@ const EmailHeaderTemplate = `
                       <div style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:0px;padding-left:10px;">
                         <div style="font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; line-height: 14px; color: #555555;">
                           <p style="font-size: 14px; line-height: 16px; margin: 0;"><span style="font-size: 14px; line-height: 16px; color: #ffffff;">
-                          <a href="https://github.com/{{.Event.Repo.FullName}}/tree/{{.CheckSuite.HeadBranch}}" style="color: #9768d1; line-height: 16px; font-size: 14px;">
+                          <a href="https://github.com/{{.Event.Repo.FullName}}/tree/{{.CheckSuite.HeadBranch}}" style="color: #9768d1; line-height: 16px; font-size: 14px; text-decoration: none;">
                             <strong>{{.CheckSuite.HeadBranch}}</strong>
                           </a>
                               <span style="color: #808080; line-height: 16px; font-size: 14px;">
@@ -275,7 +275,7 @@ const EmailHeaderTemplate = `
                         <div style="font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; line-height: 14px; color: #555555;">
                           <p style="font-size: 14px; line-height: 16px; margin: 0;"><span style="font-size: 14px; line-height: 16px; color: #000000;">
 
-                          <a href="https://github.com/{{.Event.Repo.FullName}}/commit/{{.CheckSuite.HeadSHA}}" style="color: #9768d1; line-height: 16px; font-size: 14px;">
+                          <a href="https://github.com/{{.Event.Repo.FullName}}/commit/{{.CheckSuite.HeadSHA}}" style="color: #9768d1; line-height: 16px; font-size: 14px;text-decoration: none;">
                             <strong>
                               <span style="line-height: 16px; font-size: 14px;">
                               {{.CheckSuite.HeadSHA}}
@@ -287,7 +287,7 @@ const EmailHeaderTemplate = `
                               </span>
                               <span style="line-height: 16px; font-size: 14px;">
                                 <strong>
-                                  <a href="https://github.com/{{.Event.Sender.Login}}" style="color: #808080; line-height: 16px; font-size: 14px;">
+                                  <a href="https://github.com/{{.Event.Sender.Login}}" style="color: #808080; line-height: 16px; font-size: 14px; text-decoration: none;">
                                     @{{.Event.Sender.Login}}
                                   </a>
                                 </strong>
@@ -353,7 +353,7 @@ const EmailCheckTemplate = `
                         <div style="font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; line-height: 14px; font-size: 12px; color: #cb2431;">
                           <p style="line-height: 14px; font-size: 12px; margin: 0;">
                             <strong>
-                            <a href="{{.CheckRun.HTMLURL}}" style="font-size: 18px; line-height: 21px; color: #cb2431;">
+                            <a href="{{.CheckRun.HTMLURL}}" style="font-size: 18px; line-height: 21px; color: #cb2431; text-decoration: none;">
                               {{ .CheckRun.Name }}
                             </a>
                             </strong></p>
